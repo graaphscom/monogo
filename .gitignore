@@ -1,0 +1,4 @@
+.idea
+compoas/internal/docs/ecommerceapp/cmd/start_http_server/openapi/*
+!compoas/internal/docs/ecommerceapp/cmd/start_http_server/openapi/.gitkeep
+.DS_Store
