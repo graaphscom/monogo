@@ -1,13 +1,13 @@
-[![CI](https://github.com/graaphscom/dbmigrat/actions/workflows/ci.yml/badge.svg)](https://github.com/graaphscom/dbmigrat/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/graaphscom/dbmigrat/branch/master/graph/badge.svg?token=T8UAQ93Z3T)](https://codecov.io/gh/graaphscom/dbmigrat)
-[![Go Reference](https://pkg.go.dev/badge/github.com/graaphscom/dbmigrat.svg)](https://pkg.go.dev/github.com/graaphscom/dbmigrat)
+[![CI](https://github.com/graaphscom/monogo/dbmigrat/actions/workflows/ci.yml/badge.svg)](https://github.com/graaphscom/monogo/dbmigrat/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/graaphscom/monogo/dbmigrat/branch/master/graph/badge.svg?token=T8UAQ93Z3T)](https://codecov.io/gh/graaphscom/monogo/dbmigrat)
+[![Go Reference](https://pkg.go.dev/badge/github.com/graaphscom/monogo/dbmigrat.svg)](https://pkg.go.dev/github.com/graaphscom/monogo/dbmigrat)
 
 # dbmigrat
 Library for maintaining database migrations in several locations (repos).
 
 ## Installation
 ```
-go get github.com/graaphscom/dbmigrat
+go get github.com/graaphscom/monogo/dbmigrat
 ```
 ## Example code
 - [example test](example_test.go)
@@ -52,7 +52,7 @@ package main
 import (
 	"embed"
 	"fmt"
-	"github.com/graaphscom/dbmigrat"
+	"github.com/graaphscom/monogo/dbmigrat"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"log"
@@ -74,7 +74,7 @@ package main
 import (
 	"embed"
 	"fmt"
-	"github.com/graaphscom/dbmigrat"
+	"github.com/graaphscom/monogo/dbmigrat"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"log"
@@ -107,7 +107,7 @@ package main
 import (
 	"embed"
 	"fmt"
-	"github.com/graaphscom/dbmigrat"
+	"github.com/graaphscom/monogo/dbmigrat"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"log"
@@ -160,7 +160,7 @@ package main
 import (
 	"embed"
 	"fmt"
-	"github.com/graaphscom/dbmigrat"
+	"github.com/graaphscom/monogo/dbmigrat"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"log"
@@ -253,7 +253,7 @@ package main
 import (
 	"embed"
 	"fmt"
-	"github.com/graaphscom/dbmigrat"
+	"github.com/graaphscom/monogo/dbmigrat"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"log"

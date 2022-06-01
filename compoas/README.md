@@ -1,6 +1,6 @@
-[![CI](https://github.com/graaphscom/compoas/actions/workflows/ci.yml/badge.svg)](https://github.com/graaphscom/compoas/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/graaphscom/compoas/branch/master/graph/badge.svg?token=T8UAQ93Z3T)](https://codecov.io/gh/graaphscom/compoas)
-[![Go Reference](https://pkg.go.dev/badge/github.com/graaphscom/compoas.svg)](https://pkg.go.dev/github.com/graaphscom/compoas)
+[![CI](https://github.com/graaphscom/monogo/compoas/actions/workflows/ci.yml/badge.svg)](https://github.com/graaphscom/monogo/compoas/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/graaphscom/monogo/compoas/branch/master/graph/badge.svg?token=T8UAQ93Z3T)](https://codecov.io/gh/graaphscom/monogo/compoas)
+[![Go Reference](https://pkg.go.dev/badge/github.com/graaphscom/monogo/compoas.svg)](https://pkg.go.dev/github.com/graaphscom/monogo/compoas)
 
 # compoas
 
@@ -25,7 +25,7 @@ This lib provides:
 ## Installation
 
 ```
-go get github.com/graaphscom/compoas
+go get github.com/graaphscom/monogo/compoas
 ```
 
 ## Example code
@@ -34,7 +34,7 @@ go get github.com/graaphscom/compoas
 ## Usage
 Let's assume we're building a simple e-commerce app
 (same as
-in [dbmigrat](https://github.com/graaphscom/dbmigrat/blob/f5506815901304d6fbb107b63c1ed97d64d95025/README.md#usage)).
+in [dbmigrat](https://github.com/graaphscom/monogo/dbmigrat/blob/f5506815901304d6fbb107b63c1ed97d64d95025/README.md#usage)).
 This app is split into three modules. For now, each module exposes one REST API endpoint:
 
 - auth (provides an endpoint for signing up)
@@ -75,9 +75,9 @@ the billing module.
 package billing
 
 import (
-	"github.com/graaphscom/compoas"
-	"github.com/graaphscom/compoas/internal/docs/ecommerceapp/auth"
-	"github.com/graaphscom/compoas/internal/docs/ecommerceapp/inventory"
+	"github.com/graaphscom/monogo/compoas"
+	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/auth"
+	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/inventory"
 )
 
 var Openapi = compoas.OAS{
@@ -133,7 +133,7 @@ package main
 
 import (
 	"embed"
-	"github.com/graaphscom/compoas"
+	"github.com/graaphscom/monogo/compoas"
 	"log"
 	"net/http"
 )
@@ -173,7 +173,7 @@ package main
 
 import (
 	"embed"
-	"github.com/graaphscom/compoas"
+	"github.com/graaphscom/monogo/compoas"
 	"log"
 	"net/http"
 )
@@ -211,10 +211,10 @@ creating `cmd/dump_openapi/main.go` file:
 package main
 
 import (
-	"github.com/graaphscom/compoas"
-	"github.com/graaphscom/compoas/internal/docs/ecommerceapp/auth"
-	"github.com/graaphscom/compoas/internal/docs/ecommerceapp/billing"
-	"github.com/graaphscom/compoas/internal/docs/ecommerceapp/inventory"
+	"github.com/graaphscom/monogo/compoas"
+	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/auth"
+	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/billing"
+	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/inventory"
 	"log"
 	"path"
 )
@@ -235,10 +235,10 @@ create a new empty specification, the remaining specifications will be merged in
 package main
 
 import (
-	"github.com/graaphscom/compoas"
-	"github.com/graaphscom/compoas/internal/docs/ecommerceapp/auth"
-	"github.com/graaphscom/compoas/internal/docs/ecommerceapp/billing"
-	"github.com/graaphscom/compoas/internal/docs/ecommerceapp/inventory"
+	"github.com/graaphscom/monogo/compoas"
+	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/auth"
+	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/billing"
+	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/inventory"
 	"log"
 	"path"
 )

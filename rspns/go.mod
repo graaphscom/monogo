@@ -1,5 +1,5 @@
-module github.com/graaphscom/rspns
+module github.com/graaphscom/monogo/rspns
 
-go 1.16
+go 1.18
 
-require github.com/graaphscom/compoas v0.1.1
+require github.com/graaphscom/monogo/compoas v0.0.0-00010101000000-000000000000

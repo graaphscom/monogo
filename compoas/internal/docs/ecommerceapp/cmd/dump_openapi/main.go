@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/graaphscom/compoas"
-	"github.com/graaphscom/compoas/internal/docs/ecommerceapp/auth"
-	"github.com/graaphscom/compoas/internal/docs/ecommerceapp/billing"
-	"github.com/graaphscom/compoas/internal/docs/ecommerceapp/inventory"
+	"github.com/graaphscom/monogo/compoas"
+	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/auth"
+	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/billing"
+	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/inventory"
 	"log"
 	"path"
 )

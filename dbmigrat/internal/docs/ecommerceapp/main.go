@@ -3,7 +3,7 @@ package main
 import (
 	"embed"
 	"fmt"
-	"github.com/graaphscom/dbmigrat"
+	"github.com/graaphscom/monogo/dbmigrat"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"log"

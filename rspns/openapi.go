@@ -1,6 +1,6 @@
 package rspns
 
-import "github.com/graaphscom/compoas"
+import "github.com/graaphscom/monogo/compoas"
 
 var ViolationErrorResponseSchema = compoas.Schema{
 	Type: "object",

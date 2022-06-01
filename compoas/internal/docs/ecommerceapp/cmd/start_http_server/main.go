@@ -2,7 +2,7 @@ package main
 
 import (
 	"embed"
-	"github.com/graaphscom/compoas"
+	"github.com/graaphscom/monogo/compoas"
 	"log"
 	"net/http"
 )

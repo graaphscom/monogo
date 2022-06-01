@@ -1,6 +1,6 @@
 package inventory
 
-import "github.com/graaphscom/compoas"
+import "github.com/graaphscom/monogo/compoas"
 
 var Openapi = compoas.OAS{
 	Openapi: "3.0.0",
