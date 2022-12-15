@@ -1,5 +1,5 @@
-[![CI](https://github.com/graaphscom/monogo/dbmigrat/actions/workflows/ci.yml/badge.svg)](https://github.com/graaphscom/monogo/dbmigrat/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/graaphscom/monogo/dbmigrat/branch/master/graph/badge.svg?token=T8UAQ93Z3T)](https://codecov.io/gh/graaphscom/monogo/dbmigrat)
+[![CI](https://github.com/graaphscom/monogo/actions/workflows/dbmigrat.yml/badge.svg)](https://github.com/graaphscom/monogo/actions/workflows/dbmigrat.yml)
+[![codecov](https://codecov.io/gh/graaphscom/monogo/branch/master/graph/badge.svg?flag=dbmigrat)](https://codecov.io/gh/graaphscom/monogo)
 [![Go Reference](https://pkg.go.dev/badge/github.com/graaphscom/monogo/dbmigrat.svg)](https://pkg.go.dev/github.com/graaphscom/monogo/dbmigrat)
 
 # dbmigrat

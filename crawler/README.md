@@ -1,5 +1,5 @@
-[![CI](https://github.com/graaphscom/monogo/crawler/actions/workflows/ci.yml/badge.svg)](https://github.com/graaphscom/monogo/crawler/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/graaphscom/monogo/crawler/branch/master/graph/badge.svg?token=T8UAQ93Z3T)](https://codecov.io/gh/graaphscom/monogo/crawler)
+[![CI](https://github.com/graaphscom/monogo/actions/workflows/crawler.yml/badge.svg)](https://github.com/graaphscom/monogo/actions/workflows/crawler.yml)
+[![codecov](https://codecov.io/gh/graaphscom/monogo/branch/master/graph/badge.svg?flag=crawler)](https://codecov.io/gh/graaphscom/monogo)
 [![Go Reference](https://pkg.go.dev/badge/github.com/graaphscom/monogo/crawler.svg)](https://pkg.go.dev/github.com/graaphscom/monogo/crawler)
 
 # crawler

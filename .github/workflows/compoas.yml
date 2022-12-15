@@ -1,0 +1,10 @@
+name: compoas
+on:
+  push:
+    paths:
+      - "compoas/**"
+jobs:
+  checks:
+    uses: ./.github/workflows/go-mod-checks.yml
+    with:
+      go_module_name: compoas

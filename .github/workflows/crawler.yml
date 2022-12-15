@@ -1,0 +1,10 @@
+name: crawler
+on:
+  push:
+    paths:
+      - "crawler/**"
+jobs:
+  checks:
+    uses: ./.github/workflows/go-mod-checks.yml
+    with:
+      go_module_name: crawler

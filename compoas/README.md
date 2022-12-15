@@ -1,5 +1,5 @@
-[![CI](https://github.com/graaphscom/monogo/compoas/actions/workflows/ci.yml/badge.svg)](https://github.com/graaphscom/monogo/compoas/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/graaphscom/monogo/compoas/branch/master/graph/badge.svg?token=T8UAQ93Z3T)](https://codecov.io/gh/graaphscom/monogo/compoas)
+[![CI](https://github.com/graaphscom/monogo/actions/workflows/compoas.yml/badge.svg)](https://github.com/graaphscom/monogo/actions/workflows/compoas.yml)
+[![codecov](https://codecov.io/gh/graaphscom/monogo/branch/master/graph/badge.svg?flag=compoas)](https://codecov.io/gh/graaphscom/monogo)
 [![Go Reference](https://pkg.go.dev/badge/github.com/graaphscom/monogo/compoas.svg)](https://pkg.go.dev/github.com/graaphscom/monogo/compoas)
 
 # compoas

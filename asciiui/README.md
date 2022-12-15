@@ -1,9 +1,9 @@
-[![CI](https://github.com/graaphscom/monogo/asciiui/actions/workflows/ci.yml/badge.svg)](https://github.com/graaphscom/monogo/asciiui/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/graaphscom/monogo/asciiui/branch/master/graph/badge.svg?token=T8UAQ93Z3T)](https://codecov.io/gh/graaphscom/monogo/asciiui)
+[![CI](https://github.com/graaphscom/monogo/actions/workflows/asciiui.yml/badge.svg)](https://github.com/graaphscom/monogo/actions/workflows/asciiui.yml)
+[![codecov](https://codecov.io/gh/graaphscom/monogo/branch/master/graph/badge.svg?flag=asciiui)](https://codecov.io/gh/graaphscom/monogo)
 [![Go Reference](https://pkg.go.dev/badge/github.com/graaphscom/monogo/asciiui.svg)](https://pkg.go.dev/github.com/graaphscom/monogo/asciiui)
 
 # asciiui
-Build breathtaking user interfaces as a plain text. 
+Library for building plain-text based user interfaces.
 
 ## Installation
 ```

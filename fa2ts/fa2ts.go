@@ -17,7 +17,7 @@ const (
 	destination = "./src/foundations/fontawesome"
 )
 
-func main() {
+func Fa2Ts() {
 	faNamesByCategory := map[string][]string{
 		"brands":  {},
 		"regular": {},

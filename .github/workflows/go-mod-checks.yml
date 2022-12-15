@@ -1,0 +1,37 @@
+name: A reusable workflow for linting and testing a Golang module.
+on:
+  workflow_call:
+    inputs:
+      go_module_name:
+        required: true
+        type: string
+jobs:
+  golangci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+      - uses: actions/checkout@v3
+      - name: Lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          working-directory: ${{ inputs.go_module_name }}
+  codecov:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+      - name: Test with coverage
+        run: go test ./${{ inputs.go_module_name }} -race -coverprofile=${{ inputs.go_module_name }}.txt -covermode=atomic
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./${{ inputs.go_module_name }}.txt
+          flags: ${{ inputs.go_module_name }}
+          fail_ci_if_error: true

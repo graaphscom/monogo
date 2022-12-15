@@ -19,5 +19,5 @@ type Element struct {
 }
 
 type Renderable interface {
-	Render() string
+	Render() (string, error)
 }
