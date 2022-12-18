@@ -41,7 +41,7 @@ jobs:
 ```
 
 2. Add module name to the [Makefile](./Makefile):
-```
+```diff
 - modules := asciiui compoas crawler dbmigrat fa2ts rspns
 + modules := asciiui compoas crawler dbmigrat fa2ts rspns <mod_name>
 ```
