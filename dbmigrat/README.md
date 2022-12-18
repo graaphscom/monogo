@@ -11,7 +11,7 @@ go get github.com/graaphscom/monogo/dbmigrat
 ```
 ## Example code
 - [example test](example_test.go)
-- [example ecommerce app](internal/docs/ecommerceapp)
+- [example ecommerce app](_docs/ecommerceapp)
 ## Usage
 Let's assume we're building a simple e-commerce app.
 It's split into the following modules:
@@ -22,7 +22,7 @@ It's split into the following modules:
 Each of the above modules needs to store data in a database.
 The below diagram represents tables we need to have at the first iteration of our project:
 
-![](./internal/docs/er_diagram.png)
+![](./_docs/er_diagram.png)
 
 That's how our project's directory layout looks like:  
 ```
@@ -213,7 +213,7 @@ func main() {
 
 After running `main.go` three migrations should have been applied.
 Now, `dbmigrat_log` table has these rows:
-![](./internal/docs/migrate_serial_0.png)
+![](./_docs/migrate_serial_0.png)
 Notice that every migration has `migration_serial` equal to zero.
 That's because all these migrations were applied by a single run.
 
@@ -240,7 +240,7 @@ That's because all these migrations were applied by a single run.
 2. run the `main.go` which we have already built
 
 Now, `dbmigrat_log` table has additional fourth row:
-![](./internal/docs/migrate_serial_1.png)
+![](./_docs/migrate_serial_1.png)
 Notice that this time migration serial is equal to one.
 
 ### Rollback

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/graaphscom/monogo/asciiui"
 )
 
@@ -13,9 +14,9 @@ func main() {
 
 	table := asciiui.Table{
 		Rows: []asciiui.TableRow{
-			{[]asciiui.TableCell{{"Approved"}, {"Description"}}},
-			{[]asciiui.TableCell{{"✅"}, {"Thing approved because it's great"}}},
-			{[]asciiui.TableCell{{"⛔️"}, {"Thing rejected because it requires improvement"}}},
+			{Cells: []asciiui.TableCell{{Text: "Approved"}, {Text: "Description"}}},
+			{Cells: []asciiui.TableCell{{Text: "✅"}, {Text: "Thing approved because it's great"}}},
+			{Cells: []asciiui.TableCell{{Text: "⛔️"}, {Text: "Thing rejected because it requires improvement"}}},
 		},
 	}
 

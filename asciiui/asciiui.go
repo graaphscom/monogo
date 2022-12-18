@@ -1,8 +1,9 @@
 package asciiui
 
 import (
-	"golang.org/x/term"
 	"os"
+
+	"golang.org/x/term"
 )
 
 func NewWindow() (*Element, error) {

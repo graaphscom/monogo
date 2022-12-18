@@ -1,7 +1,6 @@
 package asciiui
 
 import (
-	"errors"
 	"fmt"
 	"strings"
 	"unicode/utf8"
@@ -69,9 +68,7 @@ func (table Table) validate() error {
 	firstRowColumnsCount := len(table.Rows[0].Cells)
 	for idx, row := range table.Rows {
 		if len(row.Cells) != firstRowColumnsCount {
-			return errors.New(
-				fmt.Sprintf("each row of the table has to have the same columns count (bad row index: %d)", idx),
-			)
+			return fmt.Errorf("each row of the table has to have the same columns count (bad row index: %d)", idx)
 		}
 	}
 

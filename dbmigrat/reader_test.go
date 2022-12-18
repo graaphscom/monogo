@@ -10,7 +10,7 @@ import (
 	"testing/fstest"
 )
 
-//go:embed fixture
+//go:embed testdata
 var fixture embed.FS
 
 func TestReadDir(t *testing.T) {
@@ -27,12 +27,12 @@ func TestReadDir(t *testing.T) {
 		},
 	}
 	t.Run("properly reads subdirectory", func(t *testing.T) {
-		migrations, err := ReadDir(fixture, "fixture/auth")
+		migrations, err := ReadDir(fixture, "testdata/auth")
 		assert.NoError(t, err)
 		assert.Equal(t, expected, migrations)
 	})
 	t.Run("properly reads current directory (path not relative to source file)", func(t *testing.T) {
-		subFs, err := fs.Sub(fixture, "fixture/auth")
+		subFs, err := fs.Sub(fixture, "testdata/auth")
 		migrations, err := ReadDir(subFs, ".")
 		assert.NoError(t, err)
 		assert.Equal(t, expected, migrations)

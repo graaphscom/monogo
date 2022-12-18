@@ -8,7 +8,7 @@ import (
 	"log"
 )
 
-//go:embed fixture
+//go:embed testdata
 var exampleFixture embed.FS
 
 func Example() {
@@ -29,11 +29,11 @@ func Example() {
 		log.Fatalln(err)
 	}
 
-	authMigrations, err := ReadDir(exampleFixture, "fixture/auth")
+	authMigrations, err := ReadDir(exampleFixture, "testdata/auth")
 	if err != nil {
 		log.Fatalln(err)
 	}
-	billingMigrations, err := ReadDir(exampleFixture, "fixture/billing")
+	billingMigrations, err := ReadDir(exampleFixture, "testdata/billing")
 	if err != nil {
 		log.Fatalln(err)
 	}

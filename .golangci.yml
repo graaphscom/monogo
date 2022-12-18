@@ -1,0 +1,32 @@
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - staticcheck
+    - unused
+    - dogsled
+    - dupl
+    - durationcheck
+    - errchkjson
+    - exhaustive
+    - exportloopref
+    - forcetypeassert
+    - goconst
+    - gofmt
+    - goimports
+    - gosec
+    - misspell
+    - nakedret
+    - nestif
+    - noctx
+    - prealloc
+    - unconvert
+    - unparam
+#    - wrapcheck
+linters-settings:
+  exhaustive:
+    check:
+      - switch
+      - map

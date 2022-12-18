@@ -29,7 +29,7 @@ go get github.com/graaphscom/monogo/compoas
 ```
 
 ## Example code
-- [example ecommerce app](internal/docs/ecommerceapp)
+- [example ecommerce app](_docs/ecommerceapp)
 
 ## Usage
 Let's assume we're building a simple e-commerce app
@@ -42,7 +42,7 @@ This app is split into three modules. For now, each module exposes one REST API 
 - inventory (provides an endpoint for fetching a single product)
 
 At the end of this mini-tutorial we will have documentation for each separate module and one merged doc:
-![](./internal/docs/demo.gif)
+![](./_docs/demo.gif)
 
 That's how our project's directory layout looks like:
 
@@ -76,8 +76,8 @@ package billing
 
 import (
 	"github.com/graaphscom/monogo/compoas"
-	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/auth"
-	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/inventory"
+	"github.com/graaphscom/monogo/compoas/_docs/ecommerceapp/auth"
+	"github.com/graaphscom/monogo/compoas/_docs/ecommerceapp/inventory"
 )
 
 var Openapi = compoas.OAS{
@@ -117,9 +117,9 @@ var Openapi = compoas.OAS{
 }
 ```
 
-`inventory/openapi.go`: [check here](./internal/docs/ecommerceapp/inventory/openapi.go)
+`inventory/openapi.go`: [check here](./_docs/ecommerceapp/inventory/openapi.go)
 
-`auth/openapi.go`: [check here](./internal/docs/ecommerceapp/auth/openapi.go)
+`auth/openapi.go`: [check here](./_docs/ecommerceapp/auth/openapi.go)
 
 Now it's time to build a command for starting an HTTP server which will be exposing:
 
@@ -212,9 +212,9 @@ package main
 
 import (
 	"github.com/graaphscom/monogo/compoas"
-	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/auth"
-	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/billing"
-	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/inventory"
+	"github.com/graaphscom/monogo/compoas/_docs/ecommerceapp/auth"
+	"github.com/graaphscom/monogo/compoas/_docs/ecommerceapp/billing"
+	"github.com/graaphscom/monogo/compoas/_docs/ecommerceapp/inventory"
 	"log"
 	"path"
 )
@@ -236,9 +236,9 @@ package main
 
 import (
 	"github.com/graaphscom/monogo/compoas"
-	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/auth"
-	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/billing"
-	"github.com/graaphscom/monogo/compoas/internal/docs/ecommerceapp/inventory"
+	"github.com/graaphscom/monogo/compoas/_docs/ecommerceapp/auth"
+	"github.com/graaphscom/monogo/compoas/_docs/ecommerceapp/billing"
+	"github.com/graaphscom/monogo/compoas/_docs/ecommerceapp/inventory"
 	"log"
 	"path"
 )

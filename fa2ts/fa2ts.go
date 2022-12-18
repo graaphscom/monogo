@@ -35,7 +35,7 @@ func Fa2Ts() {
 		}
 	}
 
-	for faCategory, _ := range faNamesByCategory {
+	for faCategory := range faNamesByCategory {
 		if err := os.Mkdir(path.Join(destination, faCategory), 0750); err != nil && !os.IsExist(err) {
 			log.Fatalln(err)
 		}

@@ -18,6 +18,7 @@ Monorepo containing Golang modules.
 ## Getting started
 
 1. `brew install go golangci-lint`
+2. Due to the golangci problem, diffutils are needed: `brew install diffutils`
 
 ## Releasing
 
@@ -37,4 +38,10 @@ jobs:
     uses: ./.github/workflows/go-mod-checks.yml
     with:
       go_module_name: <mod_name>
+```
+
+2. Add module name to the [Makefile](./Makefile):
+```
+- modules := asciiui compoas crawler dbmigrat fa2ts rspns
++ modules := asciiui compoas crawler dbmigrat fa2ts rspns <mod_name>
 ```
