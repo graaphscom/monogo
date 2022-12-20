@@ -1,4 +1,4 @@
-[![codecov](https://codecov.io/gh/graaphscom/monogo/branch/master/graph/badge.svg)](https://codecov.io/gh/graaphscom/monogo)
+[![codecov](https://codecov.io/gh/graaphscom/monogo/branch/main/graph/badge.svg)](https://codecov.io/gh/graaphscom/monogo)
 
 # monogo
 

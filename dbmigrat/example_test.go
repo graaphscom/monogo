@@ -6,6 +6,7 @@ import (
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"log"
+	"os"
 )
 
 //go:embed testdata
@@ -18,7 +19,7 @@ func Example() {
 		log.Fatalln(err)
 	}
 
-	db, err := sqlx.Open("postgres", "postgres://dbmigrat:dbmigrat@localhost:5432/dbmigrat?sslmode=disable")
+	db, err := sqlx.Open("postgres", os.Getenv("DBMIGRAT_TEST_DB_URL"))
 	if err != nil {
 		log.Fatalln(err)
 	}

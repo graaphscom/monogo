@@ -14,7 +14,7 @@ import (
 var th *testHelper
 
 func TestMain(m *testing.M) {
-	db, err := sqlx.Open("postgres", "postgres://dbmigrat:dbmigrat@localhost:5432/dbmigrat?sslmode=disable")
+	db, err := sqlx.Open("postgres", os.Getenv("DBMIGRAT_TEST_DB_URL"))
 	th = newTestHelper(db)
 	if err != nil {
 		log.Fatalln(err)
