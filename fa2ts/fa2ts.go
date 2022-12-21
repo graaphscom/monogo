@@ -24,7 +24,7 @@ func Fa2Ts() {
 		"solid":   {},
 	}
 
-	for faCategory, _ := range faNamesByCategory {
+	for faCategory := range faNamesByCategory {
 		dirEntries, err := os.ReadDir(path.Join(faDir, faCategory))
 		if err != nil {
 			log.Fatalln(err)
@@ -46,12 +46,15 @@ func Fa2Ts() {
 		iconsCount += len(faPaths)
 	}
 
-	svgViewBoxRegexp, err := regexp.Compile("viewBox=\"([^\"]+)\"")
-	svgPathRegexp, err := regexp.Compile("d=\"([^\"]+)\"")
-	copyrightRegexp, err := regexp.Compile("<!--! (.*) -->")
-	tsIconFileTmpl, err := template.New("tsIconFileTpl").Parse("// {{.CopyrightNote}}\nexport const {{.IconName}} = {\n  d: \"{{.SvgPath}}\",\n  viewBox: \"{{.SvgViewBox}}\",\n};\n")
-	if err != nil {
-		log.Fatalln(err)
+	svgViewBoxRegexp, err1 := regexp.Compile("viewBox=\"([^\"]+)\"")
+	svgPathRegexp, err2 := regexp.Compile("d=\"([^\"]+)\"")
+	copyrightRegexp, err3 := regexp.Compile("<!--! (.*) -->")
+	tsIconFileTmpl, err4 := template.New("tsIconFileTpl").Parse("// {{.CopyrightNote}}\nexport const {{.IconName}} = {\n  d: \"{{.SvgPath}}\",\n  viewBox: \"{{.SvgViewBox}}\",\n};\n")
+
+	for _, err := range []error{err1, err2, err3, err4} {
+		if err != nil {
+			log.Fatalln(err)
+		}
 	}
 
 	resultCh := make(chan FaResult, iconsCount)
@@ -125,7 +128,7 @@ func Fa2Ts() {
 		log.Fatalln(errSummary)
 	}
 
-	log.Printf("Sucesfully transformed %d icons", iconsCount)
+	log.Printf("Successfully transformed %d icons", iconsCount)
 }
 
 type FaResult struct {
@@ -144,7 +147,7 @@ func (e *FaError) Error() string {
 }
 
 func kebabToCamelCase(varName string) string {
-	hyphenPartRegexp, _ := regexp.Compile("-\\w{1}")
+	hyphenPartRegexp, _ := regexp.Compile(`-\w{1}`)
 	return hyphenPartRegexp.ReplaceAllStringFunc(varName, func(s string) string {
 		return strings.ToUpper(string(s[1]))
 	})

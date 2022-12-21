@@ -2,8 +2,9 @@ package dbmigrat
 
 import (
 	"database/sql"
-	"github.com/jmoiron/sqlx"
 	"time"
+
+	"github.com/jmoiron/sqlx"
 )
 
 // CreateLogTable creates table in db where applied migrations will be saved.

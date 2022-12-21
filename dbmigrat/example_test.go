@@ -3,10 +3,11 @@ package dbmigrat
 import (
 	"embed"
 	"fmt"
-	"github.com/jmoiron/sqlx"
-	_ "github.com/lib/pq"
 	"log"
 	"os"
+
+	"github.com/jmoiron/sqlx"
+	_ "github.com/lib/pq"
 )
 
 //go:embed testdata
@@ -48,7 +49,7 @@ func Example() {
 		log.Fatalln(err)
 	}
 	if checkRes.IsCorrupted {
-		log.Fatalln(fmt.Sprintf("Db migrations are corrupted: %+v", checkRes))
+		log.Fatalf("Db migrations are corrupted: %+v\n", checkRes)
 	}
 
 	logsCount, err := Migrate(pgStore, migrations, RepoOrder{"auth", "billing"})

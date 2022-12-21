@@ -18,6 +18,7 @@ import (
 // Up and down file for same migration must have same description.
 //
 // Examples of valid files names:
+//
 //	0.create_users_table.up
 //	0.create_users_table.down.sql
 //	1.add_username_column.up
@@ -28,7 +29,7 @@ func ReadDir(fileSys fs.FS, path string) ([]Migration, error) {
 		return nil, err
 	}
 
-	var fileNames []string
+	fileNames := make([]string, 0, len(dirEntries))
 	for _, dirEntry := range dirEntries {
 		if dirEntry.IsDir() {
 			return nil, errContainsDirectory

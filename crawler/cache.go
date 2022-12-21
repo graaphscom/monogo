@@ -1,8 +1,8 @@
 package crawler
 
 import (
+	"context"
 	"errors"
-	"fmt"
 	"io"
 	"io/fs"
 	"log"
@@ -13,7 +13,7 @@ import (
 	"sync"
 )
 
-func CachePages(httpClient *http.Client, pages map[string]FilePath) <-chan error {
+func CachePages(ctx context.Context, httpClient *http.Client, pages map[string]FilePath) <-chan error {
 	var wg sync.WaitGroup
 	wg.Add(len(pages))
 	result := make(chan error)
@@ -29,6 +29,7 @@ func CachePages(httpClient *http.Client, pages map[string]FilePath) <-chan error
 			}
 
 			err = CachePage(
+				ctx,
 				url,
 				path.Join(dstFilePath.DirPath, dstFilePath.FileName),
 				httpClient,
@@ -50,9 +51,9 @@ type FilePath struct {
 	FileName string
 }
 
-func CachePage(url string, filePath string, httpClient *http.Client) error {
+func CachePage(ctx context.Context, url string, filePath string, httpClient *http.Client) error {
 	file, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE|os.O_EXCL, 0666)
-	defer file.Close()
+	defer func() { err = file.Close() }()
 	if errors.Is(err, fs.ErrExist) {
 		// don't make http request when html page already saved
 		return nil
@@ -61,7 +62,8 @@ func CachePage(url string, filePath string, httpClient *http.Client) error {
 		return err
 	}
 
-	resp, err := httpClient.Get(url)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+	resp, err := httpClient.Do(req)
 	_, err = io.Copy(file, resp.Body)
 	defer resp.Body.Close()
 
@@ -86,6 +88,6 @@ type loggingRoundTripper struct {
 }
 
 func (lrt loggingRoundTripper) RoundTrip(req *http.Request) (res *http.Response, e error) {
-	lrt.logger.Println(fmt.Sprintf("Sending request to %s", req.URL))
+	lrt.logger.Printf("Sending request to %s\n", req.URL)
 	return lrt.proxied.RoundTrip(req)
 }

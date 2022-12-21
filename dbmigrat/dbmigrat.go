@@ -1,11 +1,12 @@
 // Package dbmigrat allows for organizing database migrations across multiple locations
-// (eg. across multiple repositories in monorepo project)
+// (e.g. across multiple repositories in monorepo project)
 package dbmigrat
 
 import (
 	"crypto/sha1"
 	"errors"
 	"fmt"
+
 	"github.com/hashicorp/go-multierror"
 )
 
@@ -18,7 +19,7 @@ import (
 //
 // repoOrder parameter is an array of repositories names (string). It
 // determines order in which values from migrations map will be applied.
-// eg. if migrations in repo "A" have foreign keys to repo "B" - then repoOrder should be {"B", "A"}
+// e.g. if migrations in repo "A" have foreign keys to repo "B" - then repoOrder should be {"B", "A"}
 func Migrate(s store, migrations Migrations, repoOrder RepoOrder) (int, error) {
 	err := s.begin()
 	if err != nil {

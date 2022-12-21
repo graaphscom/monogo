@@ -2,7 +2,7 @@
 
 # monogo
 
-Monorepo containing Golang modules.
+Set of tools for building another tools and apps.
 
 | module name | purpose                                                                                                             |
 |-------------|---------------------------------------------------------------------------------------------------------------------|
@@ -38,6 +38,12 @@ jobs:
     uses: ./.github/workflows/go-mod-checks.yml
     with:
       go_module_name: <mod_name>
+# Set the below inputs to make a database available for your tests.
+# You can connect to the database by using its url value stored in
+# the environment variable which name is defined by "postgres_url_env_var_name" input.
+#     postgres_password: <some_password>
+#     postgres_user: <some_username>
+#     postgres_url_env_var_name: <SOME_ENV_NAME e.g. DBMIGRAT_TEST_URL_DB>
 ```
 
 2. Add module name to the [Makefile](./Makefile):

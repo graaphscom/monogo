@@ -3,11 +3,12 @@ package dbmigrat
 import (
 	"embed"
 	"errors"
-	"github.com/stretchr/testify/assert"
 	"io/fs"
 	"os"
 	"testing"
 	"testing/fstest"
+
+	"github.com/stretchr/testify/assert"
 )
 
 //go:embed testdata
@@ -32,9 +33,10 @@ func TestReadDir(t *testing.T) {
 		assert.Equal(t, expected, migrations)
 	})
 	t.Run("properly reads current directory (path not relative to source file)", func(t *testing.T) {
-		subFs, err := fs.Sub(fixture, "testdata/auth")
-		migrations, err := ReadDir(subFs, ".")
-		assert.NoError(t, err)
+		subFs, err1 := fs.Sub(fixture, "testdata/auth")
+		migrations, err2 := ReadDir(subFs, ".")
+		assert.NoError(t, err1)
+		assert.NoError(t, err2)
 		assert.Equal(t, expected, migrations)
 	})
 	t.Run("returns empty array when dir contains zero files", func(t *testing.T) {

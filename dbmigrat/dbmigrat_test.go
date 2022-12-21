@@ -2,13 +2,14 @@ package dbmigrat
 
 import (
 	"errors"
+	"log"
+	"os"
+	"testing"
+
 	"github.com/hashicorp/go-multierror"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"github.com/stretchr/testify/assert"
-	"log"
-	"os"
-	"testing"
 )
 
 var th *testHelper
