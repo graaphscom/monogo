@@ -2,7 +2,7 @@
 
 # monogo
 
-Set of tools for building another tools and apps.
+A set of tools for building another tools and apps.
 
 | module name | purpose                                                                                                             |
 |-------------|---------------------------------------------------------------------------------------------------------------------|
@@ -19,6 +19,17 @@ Set of tools for building another tools and apps.
 
 1. `brew install go golangci-lint`
 2. Due to the golangci problem, diffutils are needed: `brew install diffutils`
+3. Check the [Makefile](./Makefile) for available rules
+
+## Testing unpublished code
+Use the `replace` directive to have not-yet-released changes available for your local project.
+
+See: [Requiring module code in a local directory](https://go.dev/doc/modules/managing-dependencies#local_directory)
+
+An example excerpt of the `go.mod` file:
+```
+replace github.com/graaphscom/monogo/crawler => ../../monogo/crawler
+```
 
 ## Releasing
 
@@ -46,7 +57,7 @@ jobs:
 #     postgres_url_env_var_name: <SOME_ENV_NAME e.g. DBMIGRAT_TEST_URL_DB>
 ```
 
-2. Add module name to the [Makefile](./Makefile):
+2. Add module name to the [Makefile](./Makefile), for example:
 ```diff
 - modules := asciiui compoas crawler dbmigrat fa2ts rspns
 + modules := asciiui compoas crawler dbmigrat fa2ts rspns <mod_name>

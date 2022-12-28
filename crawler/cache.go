@@ -10,21 +10,16 @@ import (
 	"net/http/cookiejar"
 	"os"
 	"path"
-	"sync"
 )
 
-func CachePages(ctx context.Context, httpClient *http.Client, pages map[string]FilePath) <-chan error {
-	var wg sync.WaitGroup
-	wg.Add(len(pages))
-	result := make(chan error)
+func (CB CacheBuilder) CachePages(ctx context.Context, httpClient *http.Client) CacheBuilder {
 
-	for url, dstFilePath := range pages {
+	for url, dstFilePath := range CB.pages {
 		go func(url string, dstFilePath FilePath) {
-			defer wg.Done()
 
 			err := os.MkdirAll(dstFilePath.DirPath, 0750)
 			if err != nil {
-				result <- err
+				CB.resultCh <- CachingResult{false, &CachingError{url, dstFilePath, err}}
 				return
 			}
 
@@ -36,14 +31,49 @@ func CachePages(ctx context.Context, httpClient *http.Client, pages map[string]F
 			)
 
 			if err != nil {
-				result <- err
+				CB.resultCh <- CachingResult{false, &CachingError{url, dstFilePath, err}}
 				return
 			}
+
+			CB.resultCh <- CachingResult{true, nil}
 		}(url, dstFilePath)
 	}
-	wg.Wait()
+
+	return CB
+}
+
+func (CB CacheBuilder) Join() []CachingResult {
+	expectedResultsCount := len(CB.pages)
+	result := make([]CachingResult, len(CB.pages))
+
+	for i := 0; i < expectedResultsCount; i++ {
+		result[i] = <-CB.resultCh
+	}
 
 	return result
+}
+
+func NewCacheBuilder(pages map[string]FilePath) CacheBuilder {
+	return CacheBuilder{
+		pages,
+		make(chan CachingResult, len(pages)),
+	}
+}
+
+type CacheBuilder struct {
+	pages    map[string]FilePath
+	resultCh chan CachingResult
+}
+
+type CachingResult struct {
+	Success bool
+	Err     *CachingError
+}
+
+type CachingError struct {
+	Url      string
+	FilePath FilePath
+	Err      error
 }
 
 type FilePath struct {
