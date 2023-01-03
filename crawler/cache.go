@@ -2,122 +2,132 @@ package crawler
 
 import (
 	"context"
-	"errors"
-	"io"
-	"io/fs"
-	"log"
 	"net/http"
-	"net/http/cookiejar"
-	"os"
-	"path"
+	"time"
 )
 
-func (CB CacheBuilder) CachePages(ctx context.Context, httpClient *http.Client) CacheBuilder {
+func CacheAllPages(ctx context.Context, options CachePagesOptions, delay time.Duration) []CachingResult {
+	cachingResults := CachePages(ctx, options)
 
-	for url, dstFilePath := range CB.pages {
-		go func(url string, dstFilePath FilePath) {
-
-			err := os.MkdirAll(dstFilePath.DirPath, 0750)
-			if err != nil {
-				CB.resultCh <- CachingResult{false, &CachingError{url, dstFilePath, err}}
-				return
+	for {
+		anySkipped := false
+		for _, cachingResult := range cachingResults {
+			if cachingResult.Skipped {
+				anySkipped = true
+				break
 			}
+		}
 
-			err = CachePage(
-				ctx,
-				url,
-				path.Join(dstFilePath.DirPath, dstFilePath.FileName),
-				httpClient,
-			)
-
-			if err != nil {
-				CB.resultCh <- CachingResult{false, &CachingError{url, dstFilePath, err}}
-				return
-			}
-
-			CB.resultCh <- CachingResult{true, nil}
-		}(url, dstFilePath)
+		if anySkipped {
+			time.Sleep(delay)
+			cachingResults = CachePages(ctx, options)
+		} else {
+			break
+		}
 	}
 
-	return CB
+	return cachingResults
 }
 
-func (CB CacheBuilder) Join() []CachingResult {
-	expectedResultsCount := len(CB.pages)
-	result := make([]CachingResult, len(CB.pages))
+func CachePages(ctx context.Context, options CachePagesOptions) []CachingResult {
+	pagesCount := len(options.Pages)
+	resultCh := make(chan CachingResult, pagesCount)
+	result := make([]CachingResult, pagesCount)
+	requestsCount := 0
 
-	for i := 0; i < expectedResultsCount; i++ {
-		result[i] = <-CB.resultCh
+	for url, cacheKey := range options.Pages {
+		exists, err := options.CacheStorage.exists(cacheKey)
+
+		if err != nil {
+			resultCh <- CachingResult{Url: url, Key: cacheKey, Err: err}
+			requestsCount++
+			continue
+		}
+
+		if exists {
+			resultCh <- CachingResult{Url: url, Key: cacheKey, Hit: true}
+			continue
+		}
+
+		if requestsCount >= options.RequestsLimit {
+			resultCh <- CachingResult{Url: url, Key: cacheKey, Skipped: true}
+			continue
+		}
+
+		requestsCount++
+		go func(url string, cacheKey string) {
+			resultCh <- WritePage(ctx, options.HttpClient, url, cacheKey, options.CacheStorage)
+		}(url, cacheKey)
 	}
 
+	for i := 0; i < pagesCount; i++ {
+		result[i] = <-resultCh
+	}
 	return result
 }
 
-func NewCacheBuilder(pages map[string]FilePath) CacheBuilder {
-	return CacheBuilder{
-		pages,
-		make(chan CachingResult, len(pages)),
-	}
+type CachePagesOptions struct {
+	HttpClient    *http.Client
+	Pages         PageUrlToCacheKey
+	RequestsLimit int
+	CacheStorage  CacheStorage
 }
 
-type CacheBuilder struct {
-	pages    map[string]FilePath
-	resultCh chan CachingResult
+func WritePage(ctx context.Context, httpClient *http.Client, url string, key string, cacheStorage CacheStorage) CachingResult {
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+	if err != nil {
+		return CachingResult{Url: url, Key: key, Err: err}
+	}
+
+	resp, err := httpClient.Do(req)
+	if err != nil {
+		return CachingResult{Url: url, Key: key, Err: err}
+	}
+	defer resp.Body.Close()
+
+	err = cacheStorage.write(key, resp.Body)
+	if err != nil {
+		return CachingResult{Url: url, Key: key, Err: err}
+	}
+
+	return CachingResult{Url: url, Key: key}
 }
 
 type CachingResult struct {
-	Success bool
-	Err     *CachingError
+	Url     string
+	Key     string
+	Hit     bool
+	Skipped bool
+	Err     error
 }
 
-type CachingError struct {
-	Url      string
-	FilePath FilePath
-	Err      error
-}
+type PageUrlToCacheKey = map[string]string
 
-type FilePath struct {
-	DirPath  string
-	FileName string
-}
+func BuildCachingSummary(cachingResult []CachingResult) CachingSummary {
+	summary := CachingSummary{}
+	for _, pageResult := range cachingResult {
+		if pageResult.Err != nil {
+			summary.Err = append(summary.Err, pageResult)
+			continue
+		}
+		if pageResult.Hit {
+			summary.Hit = append(summary.Hit, pageResult)
+			continue
+		}
+		if pageResult.Skipped {
+			summary.Skipped = append(summary.Skipped, pageResult)
+			continue
+		}
 
-func CachePage(ctx context.Context, url string, filePath string, httpClient *http.Client) error {
-	file, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE|os.O_EXCL, 0666)
-	defer func() { err = file.Close() }()
-	if errors.Is(err, fs.ErrExist) {
-		// don't make http request when html page already saved
-		return nil
+		summary.Written = append(summary.Written, pageResult)
+
 	}
-	if err != nil {
-		return err
-	}
-
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
-	resp, err := httpClient.Do(req)
-	_, err = io.Copy(file, resp.Body)
-	defer resp.Body.Close()
-
-	return err
+	return summary
 }
 
-func NewHttpClient(logger *log.Logger) (*http.Client, error) {
-	httpClientCookieJar, err := cookiejar.New(nil)
-	if err != nil {
-		return nil, err
-	}
-	return &http.Client{
-		// Without proper cookie handling it will fall into a redirect loop
-		Jar:       httpClientCookieJar,
-		Transport: loggingRoundTripper{proxied: http.DefaultTransport, logger: logger},
-	}, nil
-}
-
-type loggingRoundTripper struct {
-	proxied http.RoundTripper
-	logger  *log.Logger
-}
-
-func (lrt loggingRoundTripper) RoundTrip(req *http.Request) (res *http.Response, e error) {
-	lrt.logger.Printf("Sending request to %s\n", req.URL)
-	return lrt.proxied.RoundTrip(req)
+type CachingSummary struct {
+	Written []CachingResult
+	Hit     []CachingResult
+	Skipped []CachingResult
+	Err     []CachingResult
 }
