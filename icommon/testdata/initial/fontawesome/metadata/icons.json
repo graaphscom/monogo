@@ -1,0 +1,54 @@
+{
+  "42-group": {
+    "search": {
+      "terms": []
+    }
+  },
+  "500px": {
+    "search": {
+      "terms": []
+    }
+  },
+  "address-book": {
+    "search": {
+      "terms": [
+        "contact",
+        "directory",
+        "index",
+        "little black book",
+        "rolodex"
+      ]
+    }
+  },
+  "address-card": {
+    "search": {
+      "terms": [
+        "about",
+        "contact",
+        "id",
+        "identification",
+        "postcard",
+        "profile",
+        "registration"
+      ]
+    }
+  },
+  "bell-slash": {
+    "search": {
+      "terms": [
+        "alert",
+        "bell",
+        "bell with slash",
+        "cancel",
+        "disabled",
+        "forbidden",
+        "mute",
+        "notification",
+        "off",
+        "quiet",
+        "reminder",
+        "silent"
+      ]
+    }
+  }
+}

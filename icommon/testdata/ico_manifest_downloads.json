@@ -1,0 +1,33 @@
+{
+  "basePath": "/Users/konradmikucki/Downloads/icons",
+  "vendorsPaths": {
+    "boxicons": {
+      "icons": "boxicons-master/svg"
+    },
+    "bytesize": {
+      "icons": "bytesize-icons-1.4/dist/icons"
+    },
+    "fluentui": {
+      "icons": "fluentui-system-icons-1.1.224/assets"
+    },
+    "fontawesome": {
+      "icons": "fontawesome-free-6.4.2-web/svgs",
+      "metadata": "fontawesome-free-6.4.2-web/metadata/icons.json"
+    },
+    "octicons": {
+      "icons": "octicons-19.8.0/icons",
+      "metadata": "octicons-19.8.0/keywords.json"
+    },
+    "radixui": {
+      "icons": "icons--radix-ui-react-icons-1.0.3/packages/radix-icons/icons"
+    },
+    "remixicon": {
+      "icons": "RemixIcon-3.5.0/icons",
+      "metadata": "RemixIcon-3.5.0/tags.json"
+    },
+    "unicons": {
+      "icons": "unicons-3.0.0/svg",
+      "metadata": "unicons-3.0.0/json"
+    }
+  }
+}

@@ -1,3 +1,3 @@
 module github.com/graaphscom/monogo/crawler
 
-go 1.18
+go 1.21

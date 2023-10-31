@@ -10,7 +10,7 @@ A set of tools for building another tools and apps.
 | crawler     | providing reusable utilities for web crawling                                                                       |
 | compoas     | building, composing and serving [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification) (aka Swagger) |
 | dbmigrat    | maintaining database migrations in several locations (repos)                                                        |
-| fa2ts       | extracting svg paths from [Font Awesome files](https://fontawesome.com/download) to TypeScript variables            |
+| icommon       | extracting svg paths from [Font Awesome files](https://fontawesome.com/download) to TypeScript variables            |
 | rspns       | building and documenting consistent HTTP responses                                                                  |
 
 # Contributing
@@ -59,6 +59,6 @@ jobs:
 
 2. Add module name to the [Makefile](./Makefile), for example:
 ```diff
-- modules := asciiui compoas crawler dbmigrat fa2ts rspns
-+ modules := asciiui compoas crawler dbmigrat fa2ts rspns <mod_name>
+- modules := asciiui compoas crawler dbmigrat icommon rspns
++ modules := asciiui compoas crawler dbmigrat icommon rspns <mod_name>
 ```

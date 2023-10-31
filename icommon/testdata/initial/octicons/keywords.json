@@ -1,0 +1,8 @@
+{
+  "alert": [
+    "warning",
+    "triangle",
+    "exclamation",
+    "point"
+  ]
+}

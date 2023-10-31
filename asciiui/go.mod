@@ -1,6 +1,6 @@
 module github.com/graaphscom/monogo/asciiui
 
-go 1.19
+go 1.21
 
 require golang.org/x/term v0.2.0
 

@@ -1,6 +1,6 @@
 module github.com/graaphscom/monogo/dbmigrat
 
-go 1.18
+go 1.21
 
 require (
 	github.com/hashicorp/go-multierror v1.1.1

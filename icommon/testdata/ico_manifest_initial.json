@@ -1,0 +1,33 @@
+{
+  "basePath": "testdata/initial",
+  "vendorsPaths": {
+    "boxicons": {
+      "icons": "boxicons/svg"
+    },
+    "bytesize": {
+      "icons": "bytesize/dist/icons"
+    },
+    "fluentui": {
+      "icons": "fluentui/assets"
+    },
+    "fontawesome": {
+      "icons": "fontawesome/svgs",
+      "metadata": "fontawesome/metadata/icons.json"
+    },
+    "octicons": {
+      "icons": "octicons/icons",
+      "metadata": "octicons/keywords.json"
+    },
+    "radixui": {
+      "icons": "radixui/packages/radix-icons/icons"
+    },
+    "remixicon": {
+      "icons": "remixicon/icons",
+      "metadata": "remixicon/tags.json"
+    },
+    "unicons": {
+      "icons": "unicons/svg",
+      "metadata": "unicons/json"
+    }
+  }
+}

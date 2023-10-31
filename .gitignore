@@ -1,4 +1,5 @@
 .idea
 compoas/_docs/ecommerceapp/cmd/start_http_server/openapi/*
 !compoas/_docs/ecommerceapp/cmd/start_http_server/openapi/.gitkeep
+icommon/testdata/successful-result
 .DS_Store
